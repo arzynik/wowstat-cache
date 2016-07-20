@@ -8,8 +8,8 @@ var regions = {
 	us: 'https://us.api.battle.net/wow/realm/status?locale=en_US',
 	eu: 'https://eu.api.battle.net/wow/realm/status?locale=en_GB',
 	cn: 'https://api.battlenet.com.cn/wow/realm/status?locale=zh_CN',
-	tw: 'https://eu.api.battle.net/wow/realm/status?locale=zh_TW',
-	kr: 'https://eu.api.battle.net/wow/realm/status?locale=ko_KR'
+	tw: 'https://tw.api.battle.net/wow/realm/status?locale=zh_TW',
+	kr: 'https://kr.api.battle.net/wow/realm/status?locale=ko_KR'
 };
 
 var client = new elasticsearch.Client({
