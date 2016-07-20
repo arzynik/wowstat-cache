@@ -24,11 +24,12 @@ client.indices.create({
 	index: 'realms'
 });
 
-app.get('/update', (req, res) => {
-
+var update = () => {
+	console.log('Updating realm status cache...');
 	var processRegion = (region) => {
 		request(regions[region] + '&apikey=' + apiKey, (error, response, body) => {
 			if (!error && response.statusCode == 200) {
+				console.log('Updated region ' + region);
 
 				body = JSON.parse(body);
 
@@ -52,7 +53,10 @@ app.get('/update', (req, res) => {
 	for (var r in regions) {
 		processRegion(r);
 	}
+}
 
+app.get('/update', (req, res) => {
+	update();
 	res.send('indexing...');
 });
 
@@ -85,4 +89,6 @@ app.get('/status', (req, res) => {
 
 app.listen(process.env.PORT || 3000, () => {
 	console.log('WoW Stat cache server now running!');
+	update();
+	setInterval(update, 1000*30);
 });
